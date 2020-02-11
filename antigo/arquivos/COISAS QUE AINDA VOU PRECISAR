@@ -1,0 +1,76 @@
+
+     <!--<script>
+     $('#caixa').submit(function(and) {
+    and.preventDefault();
+    $(document).ready(function(){ and });
+    var formData = $(this).serialize();
+
+    $.ajax({ 
+        data: formData, 
+        type: "POST",
+        //url:"http://localhost/nise/aluno.php",
+        success: function(retorno) {
+              if(retorno=='1' || retorno==1)
+              {
+                alert("Formulário enviado com seucesso");
+              }
+               else
+              {
+                alert("erro ao enviar formulário");
+              }
+        }
+    });
+    return false; 
+});
+ 
+    </script>-->
+    
+<!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<script>
+$(document).ready(function () {
+    // evento de "submit"
+    $("#b_enviar").click(function (e) {
+        // parar o envio para que possamos faze-lo manualmente.
+        e.preventDefault();
+        // captura o formulário
+        var form = $('#caixa')[0];
+        // cria um FormData {Object}
+        var data = new FormData(form);
+        // processar
+        $.ajax({
+            type: "POST",
+            url: "http://localhost/nise/aluno.php", //acerte o caminho para seu script php
+            data: data,
+            processData: false, // impedir que o jQuery tranforma a "data" em querystring
+            contentType: false, // desabilitar o cabeçalho "Content-Type"
+            //cache: false, // desabilitar o "cache"
+            // manipular o sucesso da requisição
+        }).done(function(retorno){
+              if(retorno==1)
+              {
+                alert("Formulário enviado com sucesso");
+              }
+               else
+              {
+                alert("erro ao enviar formulário");
+
+              }
+        });
+    });
+});
+    
+</script>-->
+
+
+elseif(empty($_FILES['uploaded_file'])){
+  $img_padrão = "INSERT INTO denuncia (imagem) 
+  VALUES (:imagem)";
+
+$img = $connection->prepare($img_padrão);
+
+$path = "img_denuncia/";
+$path = $path . basename( $_FILES['uploaded_file']['name']);
+if(move_uploaded_file($_FILES['uploaded_file']['tmp_name'], $path))
+$valores[':imagem'] = $_FILES['uploaded_file']['name'];
+$result = $statement->execute($valores);
+}
